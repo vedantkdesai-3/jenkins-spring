@@ -22,7 +22,7 @@ pipeline {
       stage('Build Docker Image') {
          steps {
             withCredentials([string(credentialsId: 'DockerPwd', variable: 'DockerPassword')]) {
-               sh "docker login -u vedantkdesai -p ${DockerCred}"
+               sh "docker login -u vedantkdesai -p ${DockerPassword}"
             }
             sh 'docker build -t vedantkdesai/vedant-docker:1.0'
          }
@@ -31,7 +31,7 @@ pipeline {
       stage('Push Docker Image') {
          steps {
             withCredentials([string(credentialsId: 'DockerPwd', variable: 'DockerPassword')]) {
-               sh "docker login -u vedantkdesai -p ${DockerCred}"
+               sh "docker login -u vedantkdesai -p ${DockerPassword}"
             }
             sh 'docker push vedantkdesai/vedant-docker:2.0'
          }
