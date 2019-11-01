@@ -20,17 +20,21 @@ pipeline {
       }
 
       stage('Build Docker Image') {
-         withCredentials([usernameColonPassword(credentialsId: 'DockerCred', variable: 'dockerhub')]) {
-             sh "docker login -u vedantkdesai -p ${DockerCred}"
+         steps {
+            withCredentials([usernameColonPassword(credentialsId: 'DockerCred', variable: 'dockerhub')]) {
+               sh "docker login -u vedantkdesai -p ${DockerCred}"
+            }
+            sh 'docker build -t vedantkdesai/vedant-docker:1.0'
          }
-         sh 'docker build -t vedantkdesai/vedant-docker:1.0'
       }
 
       stage('Push Docker Image') {
-         withCredentials([usernameColonPassword(credentialsId: 'DockerCred', variable: 'dockerhub')]) {
-            sh "docker login -u vedantkdesai -p ${DockerCred}"
+         steps {
+            withCredentials([usernameColonPassword(credentialsId: 'DockerCred', variable: 'dockerhub')]) {
+               sh "docker login -u vedantkdesai -p ${DockerCred}"
+            }
+            sh 'docker push vedantkdesai/vedant-docker:2.0'
          }
-         sh 'docker push vedantkdesai/vedant-docker:2.0'
       }
    }
 }
