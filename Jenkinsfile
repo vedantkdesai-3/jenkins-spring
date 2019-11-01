@@ -18,5 +18,13 @@ pipeline {
             }
          }
       }
+
+      stage('Build Docker Image') {
+         sh 'docker build -t vedantkdesai/vedant-docker:1.0'
+      }
+
+      stage('Push Docker Image') {
+         sh 'docker push vedantkdesai/vedant-docker:2.0'
+      }
    }
 }
