@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class StudentServiceApplication {
 	
 
-    @GetMapping("/student/{studentName}")
+    @GetMapping("/student")
     @ResponseBody
     public String welcomeUser(@RequestParam(name="studentName", required=false, defaultValue="Java Fan") String studentName) {
-        return "Hello "+studentName;
+        return "Hello "+studentName.toUpperCase() + " ; Welcome to spring boot + docker";
     }
 
 	public static void main(String[] args) {
