@@ -18,6 +18,13 @@ public class StudentServiceApplication {
         return "Hello "+studentName.toUpperCase() + " ; Welcome to spring boot + docker";
     }
 
+    @GetMapping("/health")
+    @ResponseBody
+    public String health() {
+        return "Up";
+    }
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(StudentServiceApplication.class, args);
 	}
