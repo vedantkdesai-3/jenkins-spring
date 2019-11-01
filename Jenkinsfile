@@ -38,10 +38,9 @@ pipeline {
       }
 
       stage('Run Container') {
-         def dockerRunCMD = "docker run -p 8085:8085 --name vedant-docker vedantkdesai/vedant-docker:${BUILD_NUMBER}"
-         steps {
+        steps {
             sshagent(['vedant-aws']) {
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-34-211-0-250.us-west-2.compute.amazonaws.com ${dockerRunCMD}"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-34-211-0-250.us-west-2.compute.amazonaws.com docker run -p 8085:8085 --name vedant-docker vedantkdesai/vedant-docker:${BUILD_NUMBER}"
             }
 
          }
