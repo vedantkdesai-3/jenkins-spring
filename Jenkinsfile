@@ -36,5 +36,16 @@ pipeline {
             sh "docker push vedantkdesai/vedant-docker:${BUILD_NUMBER}"
          }
       }
+
+      stage('Run Container') {
+         steps {
+            def dockerRunCMD = "docker run -p 8085:8085 --name vedant-docker vedantkdesai/vedant-docker:${BUILD_NUMBER}"
+            sshagent(['vedant-aws']) {
+               def dockerRunCMD = "docker run -p 8085:8085 --name vedant-docker vedantkdesai/vedant-docker:${BUILD_NUMBER}"
+
+            }
+
+         }
+      }
    }
 }
