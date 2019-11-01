@@ -24,7 +24,7 @@ pipeline {
             withCredentials([string(credentialsId: 'DockerPwd', variable: 'DockerPassword')]) {
                sh "docker login -u vedantkdesai -p ${DockerPassword}"
             }
-            sh 'docker build -t vedantkdesai/vedant-docker:1.0 .'
+            sh "docker build -t vedantkdesai/vedant-docker:${BUILD_NUMBER} ."
          }
       }
 
@@ -33,7 +33,7 @@ pipeline {
             withCredentials([string(credentialsId: 'DockerPwd', variable: 'DockerPassword')]) {
                sh "docker login -u vedantkdesai -p ${DockerPassword}"
             }
-            sh 'docker push vedantkdesai/vedant-docker:2.0'
+            sh "docker push vedantkdesai/vedant-docker:${BUILD_NUMBER}"
          }
       }
    }
